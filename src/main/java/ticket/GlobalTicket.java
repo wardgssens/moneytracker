@@ -8,7 +8,4 @@ public class GlobalTicket extends Ticket {
         super("Global: " + description);
     }
 
-    public GlobalTicket(LocalDateTime timestamp, String description) {
-        super(timestamp, "Global: " + description);
-    }
 }

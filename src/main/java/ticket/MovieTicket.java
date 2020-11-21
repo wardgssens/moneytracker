@@ -8,7 +8,4 @@ public class MovieTicket extends Ticket {
         super("Movie: " + description);
     }
 
-    public MovieTicket(LocalDateTime timestamp, String description) {
-        super(timestamp, "Movie: " + description);
-    }
 }

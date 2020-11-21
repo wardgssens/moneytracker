@@ -16,10 +16,8 @@ public abstract class Ticket {
         this.description = description;
     }
 
-    public Ticket(LocalDateTime timestamp, String description) {
-        this.entries = new HashSet<>();
+    void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
-        this.description = description;
     }
 
     void addEntry(TicketEntry entry) {

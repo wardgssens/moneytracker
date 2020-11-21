@@ -8,7 +8,4 @@ public class RestaurantTicket extends Ticket {
         super("Restaurant: " + description);
     }
 
-    public RestaurantTicket(LocalDateTime timestamp, String description) {
-        super(timestamp, "Restaurant: " + description);
-    }
 }
