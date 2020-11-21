@@ -5,7 +5,7 @@ public class Individual extends Person {
         super.name = name;
     }
 
-    public boolean canPay() {
-        return true;
+    public boolean isEveryone() {
+        return false;
     }
 }

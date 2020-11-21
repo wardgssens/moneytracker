@@ -6,7 +6,7 @@ public class Everyone extends Person {
         super.name = "Everyone";
     }
 
-    public boolean canPay() {
-        return false;
+    public boolean isEveryone() {
+        return true;
     }
 }

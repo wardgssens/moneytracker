@@ -16,15 +16,15 @@ public abstract class Ticket {
         this.description = description;
     }
 
-    void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 
-    void addEntry(TicketEntry entry) {
+    public void addEntry(TicketEntry entry) {
         entries.add(entry);
     }
 
-    Set<TicketEntry> getEntries() {
+    public Set<TicketEntry> getEntries() {
         return entries;
     }
 }
