@@ -24,4 +24,9 @@ public class TicketEntry {
     public Person getPaidFor() {
         return paidFor;
     }
+
+    @Override
+    public String toString() {
+        return paidBy.getName() + " paid " + amount + " for " + paidFor.getName();
+    }
 }

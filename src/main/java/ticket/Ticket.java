@@ -1,5 +1,7 @@
 package ticket;
 
+import person.Person;
+
 import java.util.Set;
 import java.util.HashSet;
 import java.time.LocalDateTime;
@@ -24,7 +26,22 @@ public abstract class Ticket {
         entries.add(entry);
     }
 
+    public void addEntry(double amount, Person paidBy, Person paidFor) {
+        entries.add(new TicketEntry(amount, paidBy, paidFor));
+    }
+
     public Set<TicketEntry> getEntries() {
         return entries;
+    }
+
+    @Override
+    public String toString() {
+        String ticket = description + " @ " + timestamp.toString() + "\n";
+        ticket += "--------------------------------------------\n";
+        for (TicketEntry entry : entries) {
+            ticket += entry.toString() + "\n";
+        }
+
+        return ticket;
     }
 }
