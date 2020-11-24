@@ -19,14 +19,17 @@ public class PersonDatabase extends Observable {
 
     public void addPerson(Person person) {
         persons.add(person);
+        setChanged();
     }
 
     public ArrayList<Person> getPersons() {
         return persons;
     }
 
-    public void updatePersons() {
-
+    public void updatePersons(boolean force) {
+        if (force)
+            setChanged();
+        notifyObservers(persons);
     }
 
     public void clear() {

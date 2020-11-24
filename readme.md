@@ -36,3 +36,6 @@
 - Tests
   - Unit test for one class
   - At least one integration test
+
+## Useful information
+[Splitwise's algorithm](https://medium.com/@mithunmk93/algorithm-behind-splitwises-debt-simplification-feature-8ac485e97688)
