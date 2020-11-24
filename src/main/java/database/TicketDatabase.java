@@ -61,11 +61,11 @@ public class TicketDatabase {
                 Person paidFor = entry.getPaidFor();
                 Double amount = entry.getAmount();
 
-                totals.put(paidBy, totals.get(paidBy) - amount);
+                totals.put(paidBy, (totals.get(paidBy) != null ? totals.get(paidBy) : 0)  - amount);
                 if (paidFor.isEveryone()) {
                     commonAmount += amount;
                 } else {
-                    totals.put(paidFor, totals.get(paidFor) + amount);
+                    totals.put(paidFor, (totals.get(paidFor) != null ? totals.get(paidFor) : 0) + amount);
                 }
             }
         }
@@ -78,12 +78,35 @@ public class TicketDatabase {
         // Create Global Ticket.
         Ticket globalTicket = ticketFactory.create("global", "");
 
-        for (Map.Entry<Person, Double> entry : totals.entrySet()) {
-            Person person = entry.getKey();
-            double total = entry.getValue();
+        Iterator<Map.Entry<Person, Double>> outerTotalIterator = totals.entrySet().iterator();
+        while (outerTotalIterator.hasNext()) {
+            Map.Entry<Person, Double> outerEntry = outerTotalIterator.next();
+            Person outerPerson = outerEntry.getKey();
+            double outerTotal = outerEntry.getValue();
 
-            // Algorithm to creat entries.
+            Iterator<Map.Entry<Person, Double>> innerTotalsIterator = totals.entrySet().iterator();
+            while (innerTotalsIterator.hasNext() && outerTotal < 0) {
+                Map.Entry<Person, Double> innerEntry = innerTotalsIterator.next();
+                Person innerPerson = innerEntry.getKey();
+                double innerTotal = innerEntry.getValue();
+
+                if (innerTotal > 0) {
+                    double amount = Math.min(Math.abs(outerTotal), innerTotal);
+                    outerTotal += amount;
+                    totals.put(innerPerson, innerTotal - amount);
+                    globalTicket.addEntry(amount, outerPerson, innerPerson);
+                }
+
+                if (innerTotal == 0) {
+                    innerTotalsIterator.remove();
+                }
+            }
+
+            if (outerTotal == 0) {
+                outerTotalIterator.remove();
+            }
         }
+
 
         return globalTicket;
     }
