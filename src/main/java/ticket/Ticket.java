@@ -2,6 +2,7 @@ package ticket;
 
 import person.Person;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.HashSet;
 import java.time.LocalDateTime;
@@ -34,14 +35,17 @@ public abstract class Ticket {
         return entries;
     }
 
-    @Override
-    public String toString() {
-        String ticket = description + " @ " + timestamp.toString() + "\n";
-        ticket += "--------------------------------------------\n";
+    public String detailsToString() {
+        StringBuilder details = new StringBuilder();
         for (TicketEntry entry : entries) {
-            ticket += entry.toString() + "\n";
+            details.append(entry.toString()).append("\n");
         }
 
-        return ticket;
+        return details.toString();
+    }
+
+    @Override
+    public String toString() {
+        return description + " @ " + timestamp.format(DateTimeFormatter.ofPattern("dd-MM-yy hh:mm"));
     }
 }

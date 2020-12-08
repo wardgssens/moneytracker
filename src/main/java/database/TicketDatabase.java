@@ -33,13 +33,22 @@ public class TicketDatabase extends Observable {
 
     public void addTicket(Ticket ticket) {
         tickets.add(ticket);
-        setChanged();
+        updateTickets(true);
+    }
+
+    public void remTicket(Ticket t) {
+        tickets.remove(t);
+        updateTickets(true);
+    }
+
+    public ArrayList<Ticket> getTickets() {
+        return tickets;
     }
 
     public void updateTickets(boolean force) {
         if (force)
             setChanged();
-        notifyObservers(tickets);
+        notifyObservers("ticket-list");
     }
 
     public void clear() {

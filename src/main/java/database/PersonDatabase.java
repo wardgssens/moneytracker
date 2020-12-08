@@ -26,6 +26,11 @@ public class PersonDatabase extends Observable {
         updatePersons(true);
     }
 
+    public void remPerson(Person person) {
+        persons.remove(person);
+        updatePersons(true);
+    }
+
     public ArrayList<Person> getPersons() {
         return persons;
     }

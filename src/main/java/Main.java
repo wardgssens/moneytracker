@@ -12,18 +12,22 @@ public class Main {
         AbstractFactory<Person> personFactory = FactoryProvider.getFactory("person");
         AbstractFactory<Ticket> ticketFactory = FactoryProvider.getFactory("ticket");
 
-        // Create persons.
-        Person a = personFactory.create("individual", "A");
-        Person b = personFactory.create("individual", "B");
-        Person c = personFactory.create("individual", "C");
-        Person d = personFactory.create("individual", "D");
-        Person everyone = personFactory.create("everyone", "");
-
         // Create ticketdatabase.
         TicketDatabase ticketdb = TicketDatabase.getInstance();
 
         // Create persondatabase.
         PersonDatabase persondb = PersonDatabase.getInstance();
+
+        // Create person and put in db.
+        Person a = personFactory.create("individual", "Orval");
+        persondb.addPerson(a);
+        Person b = personFactory.create("individual", "Alfredo");
+        persondb.addPerson(b);
+        Person c = personFactory.create("individual", "Andreas");
+        persondb.addPerson(c);
+        Person d = personFactory.create("individual", "Duane");
+        persondb.addPerson(d);
+        Person everyone = personFactory.create("everyone", "");
 
         // Create tickets and put in db.
         Ticket temp = ticketFactory.create("airplane", "tickets to Ibiza");
@@ -44,10 +48,10 @@ public class Main {
 
         System.out.println(ticketdb.createGlobalTicket());
 
-        Controller controller = new Controller(persondb, ticketdb);
-
         ViewFrame frame = new ViewFrame();
-        frame.initialize(controller);
+
         persondb.addObserver(frame);
+        ticketdb.addObserver(frame);
+        Controller controller = new Controller(persondb, ticketdb, frame);
     }
 }

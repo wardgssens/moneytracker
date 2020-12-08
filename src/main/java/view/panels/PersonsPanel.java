@@ -81,7 +81,7 @@ public class PersonsPanel extends JPanel {
 
     public void addListenerRemovePerson(ActionListener actionListener)
     {
-        this.btAddPerson.addActionListener(actionListener);
+        this.btRemPerson.addActionListener(actionListener);
     }
 
     public String getTextAddPerson() {

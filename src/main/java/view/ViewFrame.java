@@ -1,7 +1,8 @@
 package view;
 
-import controller.Controller;
+import ticket.Ticket;
 import view.panels.PersonsPanel;
+import view.panels.TicketListPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,35 +10,45 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class ViewFrame extends JFrame implements Observer {
-    PersonsPanel personsPanel;
-    // Controller
+    private PersonsPanel personsPanel;
+    private TicketListPanel ticketListPanel;
 
     public ViewFrame()
     {
         super("Money tracker");
+        initialize();
     }
 
-    public void initialize(Controller controller)
+    private void initialize()
     {
         this.setSize(375, 667);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.setLayout(new BorderLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.HORIZONTAL;
+        JTabbedPane tabbedPane = new JTabbedPane();
 
-        // Pass controller to panels
-        personsPanel = new PersonsPanel(controller);
+        personsPanel = new PersonsPanel();
+        tabbedPane.addTab("Persons", personsPanel);
 
-        this.add(personsPanel);
+        ticketListPanel = new TicketListPanel();
+        tabbedPane.addTab("Ticket list", ticketListPanel);
+
+        this.add(tabbedPane);
         this.setVisible(true);
     }
 
     public void update(Observable o, Object arg) {
         switch ((String) arg) {
             case "person-list":
-                personsPanel.updateList(o);
+                personsPanel.updatePersonList(o);
+                break;
+            case "ticket-list":
+                ticketListPanel.updateTicketList(o);
                 break;
         }
     }
+
+    public PersonsPanel getPersonsPanel() {
+        return this.personsPanel;
+    }
+    public TicketListPanel getTicketListPanel() { return this.ticketListPanel; }
 }
