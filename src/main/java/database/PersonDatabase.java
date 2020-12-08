@@ -17,9 +17,13 @@ public class PersonDatabase extends Observable {
         return uniqueInstance;
     }
 
+    private PersonDatabase() {
+        persons = new ArrayList<>();
+    }
+
     public void addPerson(Person person) {
         persons.add(person);
-        setChanged();
+        updatePersons(true);
     }
 
     public ArrayList<Person> getPersons() {
@@ -29,7 +33,7 @@ public class PersonDatabase extends Observable {
     public void updatePersons(boolean force) {
         if (force)
             setChanged();
-        notifyObservers(persons);
+        notifyObservers("person-list");
     }
 
     public void clear() {

@@ -1,8 +1,11 @@
+import controller.Controller;
+import database.PersonDatabase;
 import database.TicketDatabase;
 import factory.AbstractFactory;
 import factory.FactoryProvider;
 import person.Person;
 import ticket.Ticket;
+import view.ViewFrame;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,6 +21,9 @@ public class Main {
 
         // Create ticketdatabase.
         TicketDatabase ticketdb = TicketDatabase.getInstance();
+
+        // Create persondatabase.
+        PersonDatabase persondb = PersonDatabase.getInstance();
 
         // Create tickets and put in db.
         Ticket temp = ticketFactory.create("airplane", "tickets to Ibiza");
@@ -37,5 +43,11 @@ public class Main {
         ticketdb.addTicket(temp);
 
         System.out.println(ticketdb.createGlobalTicket());
+
+        Controller controller = new Controller(persondb, ticketdb);
+
+        ViewFrame frame = new ViewFrame();
+        frame.initialize(controller);
+        persondb.addObserver(frame);
     }
 }
