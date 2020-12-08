@@ -8,4 +8,9 @@ public abstract class Person {
     }
 
     public abstract boolean isEveryone();
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
