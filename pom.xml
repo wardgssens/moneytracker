@@ -19,6 +19,11 @@
             </plugin>
         </plugins>
     </build>
-
-
+    <dependencies>
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>0.45</version>
+        </dependency>
+    </dependencies>
 </project>

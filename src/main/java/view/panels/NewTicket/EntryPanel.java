@@ -12,7 +12,7 @@ public class EntryPanel extends JPanel {
     private JTextField tfAmount;
 
     public EntryPanel() {
-        this.setLayout(new GridLayout(3, 2));
+        this.setLayout(new GridLayout(3, 2, 0, 5));
 
         tfAmount = new JTextField(6);
         this.add(new JLabel("Amount: "));

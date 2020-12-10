@@ -1,5 +1,6 @@
 package view;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import view.panels.GlobalTicketPanel;
 import view.panels.NewTicket.NewTicketPanel;
 import view.panels.PersonsPanel;
@@ -23,6 +24,12 @@ public class ViewFrame extends JFrame implements Observer {
 
     private void initialize()
     {
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception e) {
+            System.err.println("Failed to initialize LaF");
+        }
+
         this.setSize(375, 667);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

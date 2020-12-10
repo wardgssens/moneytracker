@@ -42,7 +42,7 @@ public class TicketListPanel extends JPanel {
         gbc.weightx = 1;
         gbc.weighty = 0;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(0,10,10,0);
+        gbc.insets = new Insets(0,10,10,1);
         this.add(btShowTicket, gbc);
 
         btRemoveTicket = new JButton("Remove");
@@ -55,7 +55,7 @@ public class TicketListPanel extends JPanel {
         gbc.weightx = 1;
         gbc.weighty = 0;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(0,0,10,10);
+        gbc.insets = new Insets(0,1,10,10);
         this.add(btRemoveTicket, gbc);
     }
 

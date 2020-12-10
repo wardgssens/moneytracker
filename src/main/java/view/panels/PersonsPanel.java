@@ -44,7 +44,7 @@ public class PersonsPanel extends JPanel {
         gbc.weightx = 1;
         gbc.weighty = 0;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(0,10,10,0);
+        gbc.insets = new Insets(0,10,10,1);
         this.add(tfAddPerson, gbc);
 
         btAddPerson = new JButton("+");
@@ -57,7 +57,7 @@ public class PersonsPanel extends JPanel {
         gbc.weightx = 1;
         gbc.weighty = 0;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(0,0,10,0);
+        gbc.insets = new Insets(0,1,10,1);
         this.add(btAddPerson, gbc);
 
         btRemPerson = new JButton("-");
@@ -70,7 +70,7 @@ public class PersonsPanel extends JPanel {
         gbc.weightx = 1;
         gbc.weighty = 0;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(0,0,10,10);
+        gbc.insets = new Insets(0,1,10,10);
         this.add(btRemPerson, gbc);
     }
 
