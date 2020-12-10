@@ -16,14 +16,12 @@ public class ViewFrame extends JFrame implements Observer {
     private NewTicketPanel newTicketPanel;
     private GlobalTicketPanel globalTicketPanel;
 
-    public ViewFrame()
-    {
+    public ViewFrame() {
         super("Money tracker");
         initialize();
     }
 
-    private void initialize()
-    {
+    private void initialize() {
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (Exception e) {
@@ -69,9 +67,18 @@ public class ViewFrame extends JFrame implements Observer {
     public PersonsPanel getPersonsPanel() {
         return this.personsPanel;
     }
-    public TicketListPanel getTicketListPanel() { return this.ticketListPanel; }
-    public NewTicketPanel getNewTicketPanel() { return this.newTicketPanel; }
-    public GlobalTicketPanel getGlobalTicketPanel() { return this.globalTicketPanel; }
+
+    public TicketListPanel getTicketListPanel() {
+        return this.ticketListPanel;
+    }
+
+    public NewTicketPanel getNewTicketPanel() {
+        return this.newTicketPanel;
+    }
+
+    public GlobalTicketPanel getGlobalTicketPanel() {
+        return this.globalTicketPanel;
+    }
 
     public void showError(String msg) {
         JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);

@@ -5,7 +5,10 @@ import ticket.Ticket;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -29,7 +32,7 @@ public class TicketListPanel extends JPanel {
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(10,10,10,10);
+        gbc.insets = new Insets(10, 10, 10, 10);
         this.add(ticketJList, gbc);
 
         btShowTicket = new JButton("Show");
@@ -42,7 +45,7 @@ public class TicketListPanel extends JPanel {
         gbc.weightx = 1;
         gbc.weighty = 0;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(0,10,10,1);
+        gbc.insets = new Insets(0, 10, 10, 1);
         this.add(btShowTicket, gbc);
 
         btRemoveTicket = new JButton("Remove");
@@ -55,13 +58,14 @@ public class TicketListPanel extends JPanel {
         gbc.weightx = 1;
         gbc.weighty = 0;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(0,1,10,10);
+        gbc.insets = new Insets(0, 1, 10, 10);
         this.add(btRemoveTicket, gbc);
     }
 
     public void addListenerShowTicket(ActionListener listener) {
         this.btShowTicket.addActionListener(listener);
     }
+
     public void addListenerDoubleClickItem(ActionListener listener) {
         // https://stackoverflow.com/questions/4344682/double-click-event-on-jlist-element
         this.ticketJList.addMouseListener(new MouseAdapter() {

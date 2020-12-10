@@ -1,8 +1,6 @@
 package view.panels;
 
 import database.TicketDatabase;
-import ticket.GlobalTicket;
-import ticket.GlobalTicketEntry;
 import ticket.Ticket;
 import ticket.TicketEntry;
 
@@ -10,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Observable;
-import java.util.Observer;
 
 public class GlobalTicketPanel extends JPanel {
     private DefaultListModel<TicketEntry> paymentListModel;
@@ -31,7 +28,7 @@ public class GlobalTicketPanel extends JPanel {
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(10,10,10,10);
+        gbc.insets = new Insets(10, 10, 10, 10);
         this.add(paymentJList, gbc);
 
         btCalculate = new JButton("Calculate global ticket");
@@ -44,7 +41,7 @@ public class GlobalTicketPanel extends JPanel {
         gbc.weightx = 1;
         gbc.weighty = 0;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(0,10,10,10);
+        gbc.insets = new Insets(0, 10, 10, 10);
         this.add(btCalculate, gbc);
     }
 

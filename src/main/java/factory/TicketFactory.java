@@ -11,7 +11,7 @@ public class TicketFactory implements AbstractFactory<Ticket> {
         if (type != null) {
             type = type.toLowerCase();
 
-            switch(type) {
+            switch (type) {
                 case "airplane":
                     ticket = new AirplaneTicket(name);
                     break;

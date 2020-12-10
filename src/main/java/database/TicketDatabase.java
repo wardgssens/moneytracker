@@ -6,7 +6,10 @@ import person.Person;
 import ticket.Ticket;
 import ticket.TicketEntry;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Observable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiFunction;
 
@@ -83,7 +86,7 @@ public class TicketDatabase extends Observable {
                 Person paidFor = entry.getPaidFor();
                 Double amount = entry.getAmount();
 
-                totals.put(paidBy, totals.getOrDefault(paidBy, 0.0)  - amount);
+                totals.put(paidBy, totals.getOrDefault(paidBy, 0.0) - amount);
                 if (paidFor.isEveryone()) {
                     commonAmount += amount;
                 } else {

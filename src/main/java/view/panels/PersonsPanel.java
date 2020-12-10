@@ -31,7 +31,7 @@ public class PersonsPanel extends JPanel {
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(10,10,10,10);
+        gbc.insets = new Insets(10, 10, 10, 10);
         this.add(personJList, gbc);
 
         tfAddPerson = new JTextField(14);
@@ -44,7 +44,7 @@ public class PersonsPanel extends JPanel {
         gbc.weightx = 1;
         gbc.weighty = 0;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(0,10,10,1);
+        gbc.insets = new Insets(0, 10, 10, 1);
         this.add(tfAddPerson, gbc);
 
         btAddPerson = new JButton("+");
@@ -57,7 +57,7 @@ public class PersonsPanel extends JPanel {
         gbc.weightx = 1;
         gbc.weighty = 0;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(0,1,10,1);
+        gbc.insets = new Insets(0, 1, 10, 1);
         this.add(btAddPerson, gbc);
 
         btRemPerson = new JButton("-");
@@ -70,17 +70,15 @@ public class PersonsPanel extends JPanel {
         gbc.weightx = 1;
         gbc.weighty = 0;
         gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(0,1,10,10);
+        gbc.insets = new Insets(0, 1, 10, 10);
         this.add(btRemPerson, gbc);
     }
 
-    public void addListenerAddPerson(ActionListener actionListener)
-    {
+    public void addListenerAddPerson(ActionListener actionListener) {
         this.btAddPerson.addActionListener(actionListener);
     }
 
-    public void addListenerRemovePerson(ActionListener actionListener)
-    {
+    public void addListenerRemovePerson(ActionListener actionListener) {
         this.btRemPerson.addActionListener(actionListener);
     }
 
