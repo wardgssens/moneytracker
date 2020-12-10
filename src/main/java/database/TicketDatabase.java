@@ -7,6 +7,7 @@ import ticket.Ticket;
 import ticket.TicketEntry;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiFunction;
 
 public class TicketDatabase extends Observable {
@@ -63,8 +64,9 @@ public class TicketDatabase extends Observable {
     }
 
     public void calculateGlobalTicket() {
-        // Total all TicketEntries.
-        Map<Person, Double> totals = new HashMap<>();
+        // Total all TicketEntries in a ConcurrentHashMap. It needs to be concurrent to iterate over it using
+        // two iterators at the same time.
+        Map<Person, Double> totals = new ConcurrentHashMap<>();
         double commonAmount = 0;
 
         Iterator<Ticket> ticketIterator = tickets.iterator();
