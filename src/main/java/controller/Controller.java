@@ -7,10 +7,8 @@ import factory.FactoryProvider;
 import person.Person;
 import ticket.Ticket;
 import view.ViewFrame;
-import view.panels.EntriesPanel;
-import view.panels.EntryPanel;
+import view.panels.NewTicket.EntryPanel;
 
-import javax.swing.text.View;
 import java.util.ArrayList;
 
 public class Controller {

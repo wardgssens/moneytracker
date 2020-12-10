@@ -1,4 +1,4 @@
-package view.panels;
+package view.panels.NewTicket;
 
 import database.PersonDatabase;
 import person.Person;

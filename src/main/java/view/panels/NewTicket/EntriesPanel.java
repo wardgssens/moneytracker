@@ -1,6 +1,7 @@
-package view.panels;
+package view.panels.NewTicket;
 
 import person.Person;
+import view.panels.NewTicket.EntryPanel;
 
 import javax.swing.*;
 import java.awt.*;

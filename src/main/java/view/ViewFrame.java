@@ -1,12 +1,10 @@
 package view;
 
-import ticket.Ticket;
-import view.panels.NewTicketPanel;
+import view.panels.NewTicket.NewTicketPanel;
 import view.panels.PersonsPanel;
 import view.panels.TicketListPanel;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
