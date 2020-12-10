@@ -7,8 +7,11 @@ import factory.FactoryProvider;
 import person.Person;
 import ticket.Ticket;
 import view.ViewFrame;
+import view.panels.EntriesPanel;
+import view.panels.EntryPanel;
 
 import javax.swing.text.View;
+import java.util.ArrayList;
 
 public class Controller {
     private AbstractFactory<Ticket> ticketFactory;
@@ -40,9 +43,14 @@ public class Controller {
         // Add person to database
         view.getPersonsPanel().addListenerAddPerson(e -> {
             String name = view.getPersonsPanel().getTextAddPerson();
-            view.getPersonsPanel().setTextAddPerson("");
-            Person p = personFactory.create("individual", name);
-            pdb.addPerson(p);
+
+            if (name != null && name.length() > 0) {
+                view.getPersonsPanel().setTextAddPerson("");
+                Person p = personFactory.create("individual", name);
+                pdb.addPerson(p);
+            } else {
+                view.showError("Enter a name.");
+            }
         });
 
         // Remove person from database
@@ -50,6 +58,8 @@ public class Controller {
             Person p = view.getPersonsPanel().getSelectedPerson();
             if (p != null)
                 pdb.remPerson(p);
+            else
+                view.showError("Select a player to remove.");
         });
 
         // Show detailed ticket information
@@ -57,6 +67,8 @@ public class Controller {
             Ticket t = view.getTicketListPanel().getSelectedTicket();
             if (t != null)
                 view.getTicketListPanel().showTicketInfo(t);
+            else
+                view.showError("Select a ticket to show more information.");
         });
 
         // Remove ticket from database
@@ -64,8 +76,50 @@ public class Controller {
             Ticket t = view.getTicketListPanel().getSelectedTicket();
             if (t != null)
                 tdb.remTicket(t);
+            else
+                view.showError("Select a ticket to remove.");
         });
 
-    }
+        // Add ticket to database
+        view.getNewTicketPanel().addListenerAddTicket(e -> {
+            String ticketType = view.getNewTicketPanel().getSelectedTicketType();
+            String description = view.getNewTicketPanel().getTicketDescription();
 
+            if (description != null && description.length() > 0) {
+                Ticket t = ticketFactory.create(ticketType, description);
+
+                try {
+                    ArrayList<EntryPanel> entries = view.getNewTicketPanel().getEntriesPanel().getEntryPanels();
+                    for (EntryPanel entry : entries) {
+                        double amount = Double.parseDouble(entry.getTextAmount());
+                        Person paidBy = entry.getSelectedPaidBy();
+                        Person paidFor = entry.getSelectedPaidFor();
+                        t.addEntry(amount, paidBy, paidFor);
+                    }
+
+                    tdb.addTicket(t);
+                    view.getNewTicketPanel().setTicketDescription("");
+                    view.getNewTicketPanel().getEntriesPanel().clear();
+
+                } catch (NumberFormatException ex) {
+                    view.showError("One of the amount fields is not valid.");
+                }
+            } else {
+                view.showError("Please fill in the description field.");
+            }
+        });
+
+        // Add an entry to the entries panel.
+        view.getNewTicketPanel().addListenerAddEntry(e -> {
+            view.getNewTicketPanel().getEntriesPanel().addEntry();
+            pdb.updatePersons(true);
+        });
+
+        // Clear the new ticket form.
+        view.getNewTicketPanel().addListenerClearTicket(e -> {
+            view.getNewTicketPanel().setTicketDescription("");
+            view.getNewTicketPanel().getEntriesPanel().clear();
+            pdb.updatePersons(true);
+        });
+    }
 }

@@ -1,6 +1,7 @@
 package view;
 
 import ticket.Ticket;
+import view.panels.NewTicketPanel;
 import view.panels.PersonsPanel;
 import view.panels.TicketListPanel;
 
@@ -12,6 +13,7 @@ import java.util.Observer;
 public class ViewFrame extends JFrame implements Observer {
     private PersonsPanel personsPanel;
     private TicketListPanel ticketListPanel;
+    private NewTicketPanel newTicketPanel;
 
     public ViewFrame()
     {
@@ -32,6 +34,9 @@ public class ViewFrame extends JFrame implements Observer {
         ticketListPanel = new TicketListPanel();
         tabbedPane.addTab("Ticket list", ticketListPanel);
 
+        newTicketPanel = new NewTicketPanel();
+        tabbedPane.addTab("New ticket", newTicketPanel);
+
         this.add(tabbedPane);
         this.setVisible(true);
     }
@@ -40,6 +45,7 @@ public class ViewFrame extends JFrame implements Observer {
         switch ((String) arg) {
             case "person-list":
                 personsPanel.updatePersonList(o);
+                newTicketPanel.updatePersonList(o);
                 break;
             case "ticket-list":
                 ticketListPanel.updateTicketList(o);
@@ -51,4 +57,10 @@ public class ViewFrame extends JFrame implements Observer {
         return this.personsPanel;
     }
     public TicketListPanel getTicketListPanel() { return this.ticketListPanel; }
+    public NewTicketPanel getNewTicketPanel() { return this.newTicketPanel; }
+
+    public void showError(String msg) {
+        JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
 }

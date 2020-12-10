@@ -46,8 +46,6 @@ public class Main {
         temp.addEntry(20, d, c);
         ticketdb.addTicket(temp);
 
-        System.out.println(ticketdb.createGlobalTicket());
-
         ViewFrame frame = new ViewFrame();
 
         persondb.addObserver(frame);
