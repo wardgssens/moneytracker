@@ -1,5 +1,6 @@
 package database;
 
+import factory.FactoryProvider;
 import person.Person;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ public class PersonDatabase extends Observable {
     private static PersonDatabase uniqueInstance;
 
     private ArrayList<Person> persons;
+    private Person everyone;
 
     public static PersonDatabase getInstance() {
         if (uniqueInstance == null)
@@ -19,6 +21,7 @@ public class PersonDatabase extends Observable {
 
     private PersonDatabase() {
         persons = new ArrayList<>();
+        everyone = (Person) FactoryProvider.getFactory("person").create("everyone", "");
     }
 
     public void addPerson(Person person) {
@@ -33,6 +36,10 @@ public class PersonDatabase extends Observable {
 
     public ArrayList<Person> getPersons() {
         return persons;
+    }
+
+    public Person getEveryone() {
+        return everyone;
     }
 
     public void updatePersons(boolean force) {
