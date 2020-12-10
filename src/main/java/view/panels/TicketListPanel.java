@@ -5,7 +5,7 @@ import ticket.Ticket;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -61,6 +61,16 @@ public class TicketListPanel extends JPanel {
 
     public void addListenerShowTicket(ActionListener listener) {
         this.btShowTicket.addActionListener(listener);
+    }
+    public void addListenerDoubleClickItem(ActionListener listener) {
+        // https://stackoverflow.com/questions/4344682/double-click-event-on-jlist-element
+        this.ticketJList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2)
+                    listener.actionPerformed(new ActionEvent(e.getSource(), 1, "double-click"));
+            }
+        });
     }
 
     public void addListenerRemoveTicket(ActionListener listener) {

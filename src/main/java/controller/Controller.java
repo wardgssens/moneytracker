@@ -9,6 +9,8 @@ import ticket.Ticket;
 import view.ViewFrame;
 import view.panels.NewTicket.EntryPanel;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class Controller {
@@ -60,8 +62,17 @@ public class Controller {
                 view.showError("Select a player to remove.");
         });
 
-        // Show detailed ticket information
+        // Show detailed ticket information on click of button "Show info".
         view.getTicketListPanel().addListenerShowTicket(e -> {
+            Ticket t = view.getTicketListPanel().getSelectedTicket();
+            if (t != null)
+                view.getTicketListPanel().showTicketInfo(t);
+            else
+                view.showError("Select a ticket to show more information.");
+        });
+
+        // Show detailed ticket information when a ticket is double clicked.
+        view.getTicketListPanel().addListenerDoubleClickItem(e -> {
             Ticket t = view.getTicketListPanel().getSelectedTicket();
             if (t != null)
                 view.getTicketListPanel().showTicketInfo(t);
