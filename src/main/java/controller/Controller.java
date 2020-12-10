@@ -119,5 +119,10 @@ public class Controller {
             view.getNewTicketPanel().getEntriesPanel().clear();
             pdb.updatePersons(true);
         });
+
+        // Calculate the global ticket.
+        view.getGlobalTicketPanel().addListenerCalculate(e -> {
+            tdb.calculateGlobalTicket();
+        });
     }
 }

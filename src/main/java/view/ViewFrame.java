@@ -1,5 +1,6 @@
 package view;
 
+import view.panels.GlobalTicketPanel;
 import view.panels.NewTicket.NewTicketPanel;
 import view.panels.PersonsPanel;
 import view.panels.TicketListPanel;
@@ -12,6 +13,7 @@ public class ViewFrame extends JFrame implements Observer {
     private PersonsPanel personsPanel;
     private TicketListPanel ticketListPanel;
     private NewTicketPanel newTicketPanel;
+    private GlobalTicketPanel globalTicketPanel;
 
     public ViewFrame()
     {
@@ -35,6 +37,9 @@ public class ViewFrame extends JFrame implements Observer {
         newTicketPanel = new NewTicketPanel();
         tabbedPane.addTab("New ticket", newTicketPanel);
 
+        globalTicketPanel = new GlobalTicketPanel();
+        tabbedPane.addTab("Global ticket", globalTicketPanel);
+
         this.add(tabbedPane);
         this.setVisible(true);
     }
@@ -48,6 +53,9 @@ public class ViewFrame extends JFrame implements Observer {
             case "ticket-list":
                 ticketListPanel.updateTicketList(o);
                 break;
+            case "global-ticket":
+                globalTicketPanel.updateGlobalTicket(o);
+                break;
         }
     }
 
@@ -56,6 +64,7 @@ public class ViewFrame extends JFrame implements Observer {
     }
     public TicketListPanel getTicketListPanel() { return this.ticketListPanel; }
     public NewTicketPanel getNewTicketPanel() { return this.newTicketPanel; }
+    public GlobalTicketPanel getGlobalTicketPanel() { return this.globalTicketPanel; }
 
     public void showError(String msg) {
         JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);

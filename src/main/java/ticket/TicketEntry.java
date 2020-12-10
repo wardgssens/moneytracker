@@ -3,9 +3,9 @@ package ticket;
 import person.Person;
 
 public class TicketEntry {
-    private double amount;
-    private Person paidBy;
-    private Person paidFor;
+    double amount;
+    Person paidBy;
+    Person paidFor;
 
     public TicketEntry(double amount, Person paidBy, Person paidFor) {
         this.amount = amount;

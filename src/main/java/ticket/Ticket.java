@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 
 public abstract class Ticket {
-    private Set<TicketEntry> entries;
+    Set<TicketEntry> entries;
     private LocalDateTime timestamp;
     private String description;
 

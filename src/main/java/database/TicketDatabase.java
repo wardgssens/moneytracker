@@ -16,6 +16,7 @@ public class TicketDatabase extends Observable {
     private AbstractFactory<Person> personFactory;
 
     private ArrayList<Ticket> tickets;
+    private Ticket globalTicket;
 
     private TicketDatabase() {
         ticketFactory = FactoryProvider.getFactory("ticket");
@@ -51,11 +52,17 @@ public class TicketDatabase extends Observable {
         notifyObservers("ticket-list");
     }
 
+    public void updateGlobalTicket(boolean force) {
+        if (force)
+            setChanged();
+        notifyObservers("global-ticket");
+    }
+
     public void clear() {
         tickets.clear();
     }
 
-    public Ticket createGlobalTicket() {
+    public void calculateGlobalTicket() {
         // Total all TicketEntries.
         Map<Person, Double> totals = new HashMap<>();
         double commonAmount = 0;
@@ -89,7 +96,7 @@ public class TicketDatabase extends Observable {
         totals.replaceAll(splitFunction);
 
         // Create Global Ticket.
-        Ticket globalTicket = ticketFactory.create("global", "");
+        globalTicket = ticketFactory.create("global", "");
 
         Iterator<Map.Entry<Person, Double>> outerTotalIterator = totals.entrySet().iterator();
         while (outerTotalIterator.hasNext()) {
@@ -120,6 +127,10 @@ public class TicketDatabase extends Observable {
             }
         }
 
+        updateGlobalTicket(true);
+    }
+
+    public Ticket getGlobalTicket() {
         return globalTicket;
     }
 }
