@@ -2,7 +2,9 @@ package ticket;
 
 import person.Person;
 
-public class TicketEntry {
+import java.io.Serializable;
+
+public class TicketEntry implements Serializable {
     double amount;
     Person paidBy;
     Person paidFor;

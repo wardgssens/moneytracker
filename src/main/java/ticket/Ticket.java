@@ -2,13 +2,14 @@ package ticket;
 
 import person.Person;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
 
-public abstract class Ticket {
+public abstract class Ticket implements Serializable {
     Set<TicketEntry> entries;
     private LocalDateTime timestamp;
     private String description;

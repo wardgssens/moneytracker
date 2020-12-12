@@ -37,6 +37,7 @@ public class PersonDatabase extends Observable {
     public ArrayList<Person> getPersons() {
         return persons;
     }
+    public void setPersons(ArrayList<Person> persons) { this.persons = persons; }
 
     public Person getEveryone() {
         return everyone;

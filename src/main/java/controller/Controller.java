@@ -9,6 +9,10 @@ import ticket.Ticket;
 import view.ViewFrame;
 import view.panels.NewTicket.EntryPanel;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Controller {
@@ -32,6 +36,24 @@ public class Controller {
         this.view = view;
 
         initListeners();
+
+        // Load data.
+        try {
+            FileInputStream fis = new FileInputStream("moneytracker_data.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            ArrayList<Person> persons = (ArrayList<Person>) ois.readObject();
+            ArrayList<Ticket> tickets = (ArrayList<Ticket>) ois.readObject();
+            ois.close();
+
+            pdb.setPersons(persons);
+            tdb.setTickets(tickets);
+        } catch (FileNotFoundException e) {
+            System.out.println("No data file was found.");
+        } catch (IOException e) {
+            System.err.println("IOException on file loading.");
+        } catch (ClassNotFoundException e) {
+            System.err.println("Data file not in the right format.");
+        }
 
         pdb.updatePersons(true);
         tdb.updateTickets(true);
@@ -132,6 +154,22 @@ public class Controller {
         // Calculate the global ticket.
         view.getGlobalTicketPanel().addListenerCalculate(e -> {
             tdb.calculateGlobalTicket();
+        });
+
+        // Save info on closing.
+        view.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    FileOutputStream fos = new FileOutputStream("moneytracker_data.ser");
+                    ObjectOutputStream oos = new ObjectOutputStream(fos);
+                    oos.writeObject(pdb.getPersons());
+                    oos.writeObject(tdb.getTickets());
+                    oos.close();
+                } catch (Exception exception) {
+                    System.err.println("Exception on saving data.");
+                }
+            }
         });
     }
 }

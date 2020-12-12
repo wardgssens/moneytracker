@@ -7,6 +7,7 @@ import view.panels.PersonsPanel;
 import view.panels.TicketListPanel;
 
 import javax.swing.*;
+import java.awt.event.WindowListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -29,7 +30,7 @@ public class ViewFrame extends JFrame implements Observer {
         }
 
         this.setSize(375, 667);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         JTabbedPane tabbedPane = new JTabbedPane();
 

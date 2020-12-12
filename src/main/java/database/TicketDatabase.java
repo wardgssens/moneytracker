@@ -19,6 +19,7 @@ public class TicketDatabase extends Observable {
     private AbstractFactory<Ticket> ticketFactory;
     private AbstractFactory<Person> personFactory;
 
+    private PersonDatabase pdb;
     private ArrayList<Ticket> tickets;
     private Ticket globalTicket;
 
@@ -26,6 +27,7 @@ public class TicketDatabase extends Observable {
         ticketFactory = FactoryProvider.getFactory("ticket");
         personFactory = FactoryProvider.getFactory("person");
 
+        pdb = PersonDatabase.getInstance();
         tickets = new ArrayList<>();
     }
 
@@ -49,6 +51,7 @@ public class TicketDatabase extends Observable {
     public ArrayList<Ticket> getTickets() {
         return tickets;
     }
+    public void setTickets(ArrayList<Ticket> tickets) { this.tickets = tickets; }
 
     public void updateTickets(boolean force) {
         if (force)
@@ -72,9 +75,13 @@ public class TicketDatabase extends Observable {
         Map<Person, Double> totals = new ConcurrentHashMap<>();
         double commonAmount = 0;
 
+        // Put all persons in the Map.
+        for (Person p : pdb.getPersons()) {
+            totals.put(p, 0.0);
+        }
+
         Iterator<Ticket> ticketIterator = tickets.iterator();
         Iterator<TicketEntry> entryIterator;
-
 
         while (ticketIterator.hasNext()) {
             entryIterator = ticketIterator.next().getEntries().iterator();
