@@ -46,6 +46,7 @@ public class PersonDatabase_UTest {
 
         // Verify if m_person was added to db.
         assertTrue("Test if person was added to database.", ((ArrayList<Person>) f_persons.get(ut_pdb)).contains(m_person));
+        // The update to Observers is tested separately in this unit test.
     }
 
 
@@ -69,6 +70,7 @@ public class PersonDatabase_UTest {
 
         // Verify if the mock Person was removed from db.
         assertFalse("Test if person was removed from database.", ((ArrayList<Person>) f_persons.get(ut_pdb)).contains(m_person));
+        // The update to Observers is tested separately in this unit test.
     }
 
     @Test
@@ -90,7 +92,7 @@ public class PersonDatabase_UTest {
         ut_pdb.clear();
 
         // Verify if the db if empty.
-        assertTrue("Test if person was removed from database.", ((ArrayList<Person>) f_persons.get(ut_pdb)).isEmpty());
+        assertTrue("Test if person database is empty.", ((ArrayList<Person>) f_persons.get(ut_pdb)).isEmpty());
     }
 
     @Test
