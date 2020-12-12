@@ -54,8 +54,10 @@ public class GlobalTicketPanel extends JPanel {
         Ticket t = tdb.getGlobalTicket();
 
         paymentListModel.removeAllElements();
-        for (TicketEntry e : t.getEntries()) {
-            paymentListModel.addElement(e);
+        if (t != null) {
+            for (TicketEntry e : t.getEntries()) {
+                paymentListModel.addElement(e);
+            }
         }
     }
 }
