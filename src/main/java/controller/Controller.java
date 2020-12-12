@@ -42,7 +42,7 @@ public class Controller {
         view.getPersonsPanel().addListenerAddPerson(e -> {
             String name = view.getPersonsPanel().getTextAddPerson();
 
-            if (name != null && name.length() > 0) {
+            if (name != null && name.length() > 0 && name.length() < 20) {
                 view.getPersonsPanel().setTextAddPerson("");
                 Person p = personFactory.create("individual", name);
                 pdb.addPerson(p);
@@ -92,7 +92,7 @@ public class Controller {
             String ticketType = view.getNewTicketPanel().getSelectedTicketType();
             String description = view.getNewTicketPanel().getTicketDescription();
 
-            if (description != null && description.length() > 0) {
+            if (description != null && description.length() > 0 ) {
                 Ticket t = ticketFactory.create(ticketType, description);
 
                 try {
