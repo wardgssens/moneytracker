@@ -7,7 +7,6 @@ import view.panels.PersonsPanel;
 import view.panels.TicketListPanel;
 
 import javax.swing.*;
-import java.awt.event.WindowListener;
 import java.util.Observable;
 import java.util.Observer;
 

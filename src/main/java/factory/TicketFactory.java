@@ -3,7 +3,6 @@ package factory;
 import ticket.*;
 
 public class TicketFactory implements AbstractFactory<Ticket> {
-    @Override
     public Ticket create(String type, String name) {
         // Using a String in switch statement can throw NullPointerException when the String is null.
         Ticket ticket = null;

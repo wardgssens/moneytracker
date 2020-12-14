@@ -5,7 +5,6 @@ import person.Individual;
 import person.Person;
 
 public class PersonFactory implements AbstractFactory<Person> {
-    @Override
     public Person create(String type, String name) {
         Person person = null;
 

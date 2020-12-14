@@ -20,14 +20,6 @@ public abstract class Ticket implements Serializable {
         this.description = description;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public void addEntry(TicketEntry entry) {
-        entries.add(entry);
-    }
-
     public void addEntry(double amount, Person paidBy, Person paidFor) {
         entries.add(new TicketEntry(amount, paidBy, paidFor));
     }

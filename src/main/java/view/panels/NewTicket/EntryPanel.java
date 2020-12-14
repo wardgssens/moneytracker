@@ -18,11 +18,11 @@ public class EntryPanel extends JPanel {
         this.add(new JLabel("Amount: "));
         this.add(tfAmount);
 
-        cbPaidBy = new JComboBox<Person>();
+        cbPaidBy = new JComboBox<>();
         this.add(new JLabel("Paid by: "));
         this.add(cbPaidBy);
 
-        cbPaidFor = new JComboBox<Person>();
+        cbPaidFor = new JComboBox<>();
         this.add(new JLabel("Paid for: "));
         this.add(cbPaidFor);
     }
@@ -55,12 +55,12 @@ public class EntryPanel extends JPanel {
         cbPaidFor.addItem(everyone);
 
         // Reselect the previous selection. If the previous selection is not in the ComboBox, select defaults.
-        if (cbPaidBy != null)
+        if (paidBy != null)
             cbPaidBy.setSelectedItem(paidBy);
         else
-            cbPaidBy.setSelectedIndex(0);
+            cbPaidBy.setSelectedItem(null);
 
-        if (cbPaidFor != null)
+        if (paidFor != null)
             cbPaidFor.setSelectedItem(paidFor);
         else
             cbPaidFor.setSelectedItem(everyone);

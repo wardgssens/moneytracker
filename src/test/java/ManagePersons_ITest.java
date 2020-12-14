@@ -12,7 +12,6 @@ import view.panels.PersonsPanel;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 
 public class ManagePersons_ITest {
 

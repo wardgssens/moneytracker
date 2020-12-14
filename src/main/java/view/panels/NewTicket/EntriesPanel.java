@@ -8,37 +8,37 @@ import java.util.ArrayList;
 
 
 public class EntriesPanel extends JPanel {
-    ArrayList<EntryPanel> panels;
+    ArrayList<EntryPanel> entries;
 
     public EntriesPanel() {
-        panels = new ArrayList<>();
-        panels.add(new EntryPanel());
+        entries = new ArrayList<>();
+        entries.add(new EntryPanel());
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.add(panels.get(0));
+        this.add(entries.get(0));
     }
 
     public void clear() {
-        panels.clear();
+        entries.clear();
         this.removeAll();
 
-        panels.add(new EntryPanel());
-        this.add(panels.get(0));
+        entries.add(new EntryPanel());
+        this.add(entries.get(0));
     }
 
     public void addEntry() {
         EntryPanel panel = new EntryPanel();
-        panels.add(panel);
+        entries.add(panel);
         this.add(Box.createRigidArea(new Dimension(0, 10)));
         this.add(panel);
     }
 
     public ArrayList<EntryPanel> getEntryPanels() {
-        return panels;
+        return entries;
     }
 
     public void updatePersonList(ArrayList<Person> persons, Person everyone) {
-        for (EntryPanel entry : panels) {
+        for (EntryPanel entry : entries) {
             entry.setPersonList(persons, everyone);
         }
     }

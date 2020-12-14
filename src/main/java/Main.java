@@ -1,10 +1,6 @@
 import controller.Controller;
 import database.PersonDatabase;
 import database.TicketDatabase;
-import factory.AbstractFactory;
-import factory.FactoryProvider;
-import person.Person;
-import ticket.Ticket;
 import view.ViewFrame;
 
 public class Main {

@@ -19,7 +19,7 @@ public class TicketDatabase extends Observable {
     private AbstractFactory<Ticket> ticketFactory;
     private AbstractFactory<Person> personFactory;
 
-    private PersonDatabase pdb;
+    private PersonDatabase persondb;
     private ArrayList<Ticket> tickets;
     private Ticket globalTicket;
 
@@ -27,7 +27,7 @@ public class TicketDatabase extends Observable {
         ticketFactory = FactoryProvider.getFactory("ticket");
         personFactory = FactoryProvider.getFactory("person");
 
-        pdb = PersonDatabase.getInstance();
+        persondb = PersonDatabase.getInstance();
         tickets = new ArrayList<>();
     }
 
@@ -43,8 +43,8 @@ public class TicketDatabase extends Observable {
         updateTickets(true);
     }
 
-    public void remTicket(Ticket t) {
-        tickets.remove(t);
+    public void remTicket(Ticket ticket) {
+        tickets.remove(ticket);
         updateTickets(true);
     }
 
@@ -76,7 +76,7 @@ public class TicketDatabase extends Observable {
         double commonAmount = 0;
 
         // Put all persons in the Map.
-        for (Person p : pdb.getPersons()) {
+        for (Person p : persondb.getPersons()) {
             totals.put(p, 0.0);
         }
 

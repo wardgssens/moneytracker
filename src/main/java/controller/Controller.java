@@ -11,7 +11,6 @@ import view.panels.NewTicket.EntryPanel;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -152,9 +151,9 @@ public class Controller {
         });
 
         // Calculate the global ticket.
-        view.getGlobalTicketPanel().addListenerCalculate(e -> {
-            tdb.calculateGlobalTicket();
-        });
+        view.getGlobalTicketPanel().addListenerCalculate(e ->
+            tdb.calculateGlobalTicket()
+        );
 
         // Save info on closing.
         view.addWindowListener(new WindowAdapter() {
